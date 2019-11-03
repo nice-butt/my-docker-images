@@ -8,6 +8,8 @@ MAINTAINER Dr Victor Zheng (zwxne2010@gmail.com)
 #    echo "boss ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers && chmod 440 /etc/sudoers
 USER boss
 
-
 RUN sudo apt-get update && sudo apt-get dist-upgrade
 RUN sudo apt-get -yqq install libnuma-dev
+
+RUN wget -qO - http://repo.radeon.com/rocm/apt/debian/rocm.gpg.key | sudo apt-key add -
+RUN echo 'deb [arch=amd64] http://repo.radeon.com/rocm/apt/debian/ xenial main' | sudo tee /etc/apt/sources.list.d/rocm.list
